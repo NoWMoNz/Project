@@ -8,6 +8,17 @@ if random_source_position == True:
 else:
     source_position = np.array(source_position)
 
+if perfecr_sensor_position == True:
+    num_sensors = 8
+    array_size = 10
+    theta = np.linspace(0, 2 * np.pi, num_sensors, endpoint=False)
+    radius = 4  # Example radius of the circle
+    sensor_positions = np.column_stack((radius * np.cos(theta) + array_size / 2, 
+                                    radius * np.sin(theta) + array_size / 2))
+else:
+    sensor_positions = np.array(sensor_positions)
+
+
 source_position = np.array(source_position)  # True source at (4 km, 5 km)
 sensor_positions = np.array(sensor_positions)
 
