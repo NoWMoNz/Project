@@ -8,7 +8,7 @@ if random_source_position == True:
 else:
     source_position = np.array(source_position)
 
-if perfecr_sensor_position == True:
+if perfect_sensor_position == True:
     num_sensors = 8
     array_size = 10
     theta = np.linspace(0, 2 * np.pi, num_sensors, endpoint=False)
