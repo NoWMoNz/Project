@@ -1,3 +1,18 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import find_peaks
+
+source_position = np.array(source_position)  # True source at (4 km, 5 km)
+sensor_positions = np.array(sensor_positions)
+
+# Parameters
+array_size = 10  # Array area in km
+grid_resolution = 200  # Finer grid resolution for better MUSIC estimation
+wave_speed = 5  # Wave propagation speed in km/s
+sampling_rate = 100  # Sampling rate in Hz
+num_samples = 1000  # Number of time samples
+noise_level = 0.05  # Reduced noise level to improve SNR
+
 # Generate earthquake signal (synthetic signal)
 earthquake_signal = np.sin(2 * np.pi * np.linspace(0, 1, 100))
 
