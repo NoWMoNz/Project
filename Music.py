@@ -75,7 +75,6 @@ print("Peaks found at the following coordinates:")
 for index in range(len(peaks)):
     x_coord = grid_x[peak_coords[0][index], peak_coords[1][index]]
     y_coord = grid_y[peak_coords[0][index], peak_coords[1][index]]
-    print(f"Peak {index + 1}: Estimated Source Location at X = {x_coord:.2f} km, Y = {y_coord:.2f} km")
 
 # Extract the highest peak (best guess for source location)
 if peaks.size > 0:
