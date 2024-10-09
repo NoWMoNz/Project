@@ -1,6 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
+import random
+
+if random_source_position == True:
+    source_position = np.array([random.randint(0, 9),random.randint(0, 9)])  # True source at (4 km, 5 km
+else:
+    source_position = np.array(source_position)
 
 source_position = np.array(source_position)  # True source at (4 km, 5 km)
 sensor_positions = np.array(sensor_positions)
