@@ -4,7 +4,7 @@ from scipy.signal import find_peaks
 import random
 
 if random_source_position == True:
-    source_position = np.array([random.randint(0, 9),random.randint(0, 9)])  # True source at (4 km, 5 km
+    source_position = np.array([random.randint(0, 9),random.randint(0, 9)])  # True source at (4 km, 5 km)
 else:
     source_position = np.array(source_position)
 
@@ -17,7 +17,6 @@ if perfect_sensor_position == True:
                                     radius * np.sin(theta) + array_size / 2))
 else:
     sensor_positions = np.array(sensor_positions)
-
 
 source_position = np.array(source_position)  # True source at (4 km, 5 km)
 sensor_positions = np.array(sensor_positions)
@@ -78,9 +77,6 @@ spectrum_flat = spectrum_dB.flatten()
 peaks, _ = find_peaks(spectrum_flat, height=-5)  # Adjusted threshold for more sensitivity
 peak_coords = np.unravel_index(peaks, spectrum_2d.shape)
 
-# Debugging: Print peaks found
-peak_coords = np.unravel_index(peaks, spectrum_2d.shape)
-
 # Print estimated coordinates for all found peaks
 print("Peaks found at the following coordinates:")
 for index in range(len(peaks)):
@@ -96,6 +92,14 @@ if peaks.size > 0:
     print(f"Highest Peak: Estimated Source Location: X = {max_peak_coords[0]:.2f} km, Y = {max_peak_coords[1]:.2f} km")
 else:
     max_peak_coords = (None, None)  # Handle case where no peaks are found
+
+if max_peak_coords[0] is not None:
+    deviation = np.sqrt((max_peak_coords[0] - source_position[0])**2 + (max_peak_coords[1] - source_position[1])**2)
+    print(f"Deviation: {deviation:.2f} km")
+else:
+    deviation = None
+    print("No peak found.")
+
 
 # Plot MUSIC spectrum and highlight the estimated and true source positions
 plt.imshow(spectrum_dB, extent=[0, array_size, 0, array_size], origin='lower')
@@ -116,4 +120,3 @@ plt.ylabel('Y (km)')
 plt.title('MUSIC Spectrum with Estimated Source and Sensor Locations')
 plt.legend()
 plt.show()
-
